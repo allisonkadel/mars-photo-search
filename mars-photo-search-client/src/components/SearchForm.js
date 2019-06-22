@@ -2,14 +2,26 @@ import React, { Component } from 'react';
 
 class SearchForm extends Component {
 
+  API_URL = 'https://mars-photos.herokuapp.com/api/v1/rovers/curiosity/photos'
+
   state = {
     sol: '',
     camera: ''
   }
 
   handleFormSubmit = event => {
+
     event.preventDefault();
-    console.log("submitted query")
+
+    let { sol, camera } = this.state
+    let params = { sol:sol, camera:camera }
+    let url = new URL(this.API_URL)
+    url.search = new URLSearchParams(params)
+
+    fetch(url)
+    .then(response => response.json())
+    .then(photos => console.log(photos))
+    .catch(error => console.log(error))
   }
 
   handleInputChange = event => {
@@ -37,7 +49,7 @@ class SearchForm extends Component {
             onChange={this.handleInputChange}
           />
         </div>
-        <button type='submit'>Search for Photos</button>
+        <button type='submit'>Find Photos</button>
       </form>
     )
   }

@@ -1,6 +1,18 @@
 import React, { Component } from 'react';
 
 class SearchForm extends Component {
+
+  state = {
+    sol: '',
+    camera: ''
+  }
+
+  handleInputChange = event => {
+    this.setState({
+      [event.target.name]: event.target.value
+    })
+  }
+
   render() {
     return (
       <form>
@@ -9,6 +21,7 @@ class SearchForm extends Component {
           <input
             type='text'
             name='sol'
+            onChange={this.handleInputChange}
           />
         </div>
         <div>
@@ -16,6 +29,7 @@ class SearchForm extends Component {
           <input
             type='text'
             name='camera'
+            onChange={this.handleInputChange}
           />
         </div>
         <button type='submit'>Search for Photos</button>

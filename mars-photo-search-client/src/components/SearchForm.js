@@ -12,15 +12,15 @@ class SearchForm extends Component {
   handleFormSubmit = event => {
 
     event.preventDefault();
-
-    fetch('https://localhost:3000/api/v1/photos')
-
-    // let { sol, camera } = this.state
-    // let params = { sol:sol, camera:camera }
-    // let url = new URL(this.API_URL)
-    // url.search = new URLSearchParams(params)
     //
-    // fetch(url)
+    // fetch('https://localhost:3000/api/v1/photos')
+
+    let { sol, camera } = this.state
+    let params = { sol:sol, camera:camera }
+    let url = new URL(this.API_URL)
+    url.search = new URLSearchParams(params)
+
+    fetch(url)
     .then(response => response.json())
     .then(photos => console.log(photos))
     .catch(error => console.log(error))

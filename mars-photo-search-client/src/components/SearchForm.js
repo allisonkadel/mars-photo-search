@@ -7,6 +7,11 @@ class SearchForm extends Component {
     camera: ''
   }
 
+  handleFormSubmit = event => {
+    event.preventDefault();
+    console.log("submitted query")
+  }
+
   handleInputChange = event => {
     this.setState({
       [event.target.name]: event.target.value
@@ -15,7 +20,7 @@ class SearchForm extends Component {
 
   render() {
     return (
-      <form>
+      <form onSubmit={this.handleFormSubmit}>
         <div>
           <label>Sol</label>
           <input

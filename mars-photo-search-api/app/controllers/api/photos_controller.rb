@@ -8,8 +8,8 @@ class Api::PhotosController < ApplicationController
       req.params['camera'] = params['camera']
     end
 
-    photos = JSON.parse(resp.body)
-    
+    body = JSON.parse(resp.body)
+    render :json => body['photos']
   end
 
 end

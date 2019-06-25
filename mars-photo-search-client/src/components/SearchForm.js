@@ -7,7 +7,8 @@ class SearchForm extends Component {
 
   state = {
     sol: '',
-    camera: ''
+    camera: '',
+    photos: []
   }
 
   handleFormSubmit = event => {
@@ -21,7 +22,11 @@ class SearchForm extends Component {
 
     fetch(url)
     .then(response => response.json())
-    .then(photos => console.log(photos))
+    .then(data => {
+      this.setState({
+        photos: data
+      })
+    })
     .catch(error => console.log(error))
 
     // fetch(this.API_URL, {
@@ -47,6 +52,7 @@ class SearchForm extends Component {
   }
 
   render() {
+    console.log(this.state)
     return (
       <form onSubmit={this.handleFormSubmit}>
         <div>

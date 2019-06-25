@@ -51,7 +51,7 @@ class SearchForm extends Component {
             name='sol'
             onChange={this.handleInputChange}
             required
-
+            min='0'
           />
         </div>
         <div className='Form-field'>

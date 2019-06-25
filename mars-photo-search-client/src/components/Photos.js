@@ -4,7 +4,7 @@ import Photo from './Photo';
 class Photos extends Component {
 
   renderPhotos = (photos) => {
-    return photos.map(photo => <Photo key={photo.id} img={photo.img_src} />)
+    return photos.map(photo => <Photo key={photo.id} img={photo.img_src} sol={photo.sol} camera={photo.camera} />)
   }
 
   render() {

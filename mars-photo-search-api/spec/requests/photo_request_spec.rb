@@ -31,11 +31,11 @@ RSpec.describe 'Photo API', type: :request do
         expect(response).to have_http_status(400)
       end
 
-      it 'returns asn error message in JSON' do
+      it 'returns an error message in JSON' do
         json = JSON.parse(response.body, symbolize_names: true)
         expect(json).to_not be_empty
-        expect(json[:errors][:messages]).to eq({
-          :camera=>["can't be blank"]
+        expect(json[:error][:message]).to eq({
+          :camera=>"can't be blank"
           })
       end
 

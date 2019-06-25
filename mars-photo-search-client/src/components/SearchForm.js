@@ -9,12 +9,18 @@ class SearchForm extends Component {
   state = {
     sol: '',
     camera: '',
-    photos: []
+    photos: [],
+    errors: {},
+    message: ''
   }
 
   handleFormSubmit = event => {
 
     event.preventDefault();
+    this.setState({
+      errors: {},
+      message: ''
+    })
 
     let { sol, camera } = this.state
     let params = { sol:sol, camera:camera }
@@ -22,14 +28,29 @@ class SearchForm extends Component {
     url.search = new URLSearchParams(params)
 
     fetch(url)
-    .then(response => response.json())
-    .then(data => {
-      this.setState({
-        photos: data
-      })
-    })
-    .catch(error => console.log(error))
+    .then(response => {
+      if (!response.ok) {
+        response.json()
+        .then(errors => {
+          this.setState({
+            errors: errors,
+          })
+        })
+      } else {
+        response.json()
+        .then(data => {
+          this.setState({
+            photos: data,
 
+          })
+          if (data.length === 0) {
+            this.setState({
+              message: 'No results! Try a different search.'
+            })
+          }
+        })
+      }
+    })
   }
 
   handleInputChange = event => {
@@ -73,6 +94,8 @@ class SearchForm extends Component {
         </div>
         <button type='submit'>Find Photos</button>
       </form>
+      {this.state.errors.messages && this.state.errors.messages.map(message => <h3 style={{color:"red"}}>{message}</h3>)}
+      <h3>{this.state.message}</h3>
       <Photos photos={this.state.photos} />
       </div>
     )

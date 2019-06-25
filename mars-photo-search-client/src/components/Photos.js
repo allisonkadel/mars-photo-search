@@ -10,7 +10,6 @@ class Photos extends Component {
   render() {
     return (
       <div>
-        <h1>photos component</h1>
         {this.renderPhotos(this.props.photos)}
       </div>
     )

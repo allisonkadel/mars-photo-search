@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Photos from './Photos';
+import './SearchForm.css';
 
 class SearchForm extends Component {
 
@@ -41,9 +42,10 @@ class SearchForm extends Component {
   render() {
     console.log(this.state)
     return (
-      <>
+      <div className='Search-form'>
+      <h3 className='Form-header'>Search for photos taken by NASA's Curiosity Mars rover.</h3>
       <form onSubmit={this.handleFormSubmit}>
-        <div>
+        <div className='Form-field'>
           <label>Sol</label>
           <input
             type='text'
@@ -51,7 +53,7 @@ class SearchForm extends Component {
             onChange={this.handleInputChange}
           />
         </div>
-        <div>
+        <div className='Form-field'>
           <label>Camera</label>
           <input
             type='text'
@@ -62,7 +64,7 @@ class SearchForm extends Component {
         <button type='submit'>Find Photos</button>
       </form>
       <Photos photos={this.state.photos}/>
-      </>
+      </div>
     )
   }
 }

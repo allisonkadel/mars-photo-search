@@ -5,7 +5,9 @@ RSpec.describe 'Photo API', type: :request do
   # GET /api/equipment
   # Return collection of all Equipment
 
-  describe 'GET /api/photos' do
+  describe 'GET /api/photos with query [sol = 0] and [camera = fhaz]' do
+
+    context 'when the request is valid' do
 
       before { get '/api/photos?sol=0&camera=fhaz' }
 
@@ -18,6 +20,26 @@ RSpec.describe 'Photo API', type: :request do
           expect(json).not_to be_empty
           expect(json.size).to eq(8)
       end
+
+    end
+
+    context 'when the request is invalid' do
+
+      before { get '/api/photos?sol=0' }
+
+      it 'returns a status code of 400' do
+        expect(response).to have_http_status(400)
+      end
+
+      it 'returns asn error message in JSON' do
+        json = JSON.parse(response.body, symbolize_names: true)
+        expect(json).to_not be_empty
+        expect(json[:errors][:messages]).to eq({
+          :camera=>["can't be blank"]
+          })
+      end
+
+    end
 
   end
 

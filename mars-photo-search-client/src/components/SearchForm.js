@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Photos from './Photos';
 
 class SearchForm extends Component {
 
@@ -29,20 +30,6 @@ class SearchForm extends Component {
     })
     .catch(error => console.log(error))
 
-    // fetch(this.API_URL, {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //     'params': {
-    //       'sol': this.state.sol,
-    //       'camera': this.state.camera
-    //     }
-    //   }
-    // })
-    // .then(response => response.json())
-    // .then(data => console.log(data))
-    // .catch(error => console.log(error))
-
   }
 
   handleInputChange = event => {
@@ -54,6 +41,7 @@ class SearchForm extends Component {
   render() {
     console.log(this.state)
     return (
+      <>
       <form onSubmit={this.handleFormSubmit}>
         <div>
           <label>Sol</label>
@@ -73,6 +61,8 @@ class SearchForm extends Component {
         </div>
         <button type='submit'>Find Photos</button>
       </form>
+      <Photos photos={this.state.photos}/>
+      </>
     )
   }
 }

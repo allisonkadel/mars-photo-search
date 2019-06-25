@@ -47,10 +47,11 @@ class SearchForm extends Component {
         <div className='Form-field'>
           <label>Sol</label>
           <input
-            type='text'
+            type='number'
             name='sol'
             onChange={this.handleInputChange}
             required
+
           />
         </div>
         <div className='Form-field'>

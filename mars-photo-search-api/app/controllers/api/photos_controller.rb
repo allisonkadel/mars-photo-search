@@ -7,6 +7,14 @@ class Api::PhotosController < ApplicationController
       req.params['sol'] = params['sol']
       req.params['camera'] = params['camera']
     end
-    byebug
+
+    photos = JSON.parse(resp.body)
+    
   end
+
 end
+
+# Where we left off:
+
+# built Faraday request and added gem to gemfile, but get a NameError
+# left off on minute 33 in Learn Instruct video

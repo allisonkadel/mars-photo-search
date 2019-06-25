@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 class SearchForm extends Component {
 
   RAILS_API_URL = 'http://localhost:3000/api/photos'
+  // API_URL = 'https://mars-photos.herokuapp.com/api/v1/rovers/curiosity/photos'
 
   state = {
     sol: '',

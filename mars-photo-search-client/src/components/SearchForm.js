@@ -5,7 +5,6 @@ import './SearchForm.css';
 class SearchForm extends Component {
 
   RAILS_API_URL = 'http://localhost:3000/api/photos'
-  // API_URL = 'https://mars-photos.herokuapp.com/api/v1/rovers/curiosity/photos'
 
   state = {
     sol: '',
@@ -51,19 +50,29 @@ class SearchForm extends Component {
             type='text'
             name='sol'
             onChange={this.handleInputChange}
+            required
           />
         </div>
         <div className='Form-field'>
           <label>Camera</label>
-          <input
-            type='text'
+          <select
             name='camera'
             onChange={this.handleInputChange}
-          />
+            required
+          >
+            <option></option>
+            <option value="FHAZ">Front Hazard Avoidance Camera</option>
+            <option value="RHAZ">Rear Hazard Avoidance Camera	</option>
+            <option value="MAST">Mast Camera</option>
+            <option value="CHEMCAM">Chemistry and Camera Complex</option>
+            <option value="MAHLI">Mars Hand Lens Imager</option>
+            <option value="MARDI">Mars Descent Imager</option>
+            <option value="NAVCAM">	Navigation Camera</option>
+          </select>
         </div>
         <button type='submit'>Find Photos</button>
       </form>
-      <Photos photos={this.state.photos}/>
+      <Photos photos={this.state.photos} />
       </div>
     )
   }

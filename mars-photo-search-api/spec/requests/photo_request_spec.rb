@@ -34,9 +34,7 @@ RSpec.describe 'Photo API', type: :request do
       it 'returns an error message in JSON' do
         json = JSON.parse(response.body, symbolize_names: true)
         expect(json).to_not be_empty
-        expect(json[:error][:message]).to eq({
-          :camera=>"can't be blank"
-          })
+        expect(json[:messages]).to eq(["camera can't be blank"])
       end
 
     end
